@@ -1,24 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
 
+// import './App.css';
+import Bar from './Bar.js'
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import Viz from './Viz.js'
+import Overview from "./Overview.js"
+import styled from 'styled-components'
+const Divbox = styled.div`
+// margin-top:120px;
+// margin-left:22%;
+// margin-right:22%;
+// @media (max-width: 2000px) {
+//   margin-left:15%;
+//   margin-right:15%;
+// }
+// @media (max-width: 1315px) {
+//   margin-left:10%;
+//   margin-right:10%;
+// }
+// @media (max-width: 411px) {
+//   margin-left:5%;
+//   margin-right:5%;
+// }
+
+`
+
+
+
+const Mainroute = () => {
+  return <Redirect to={`/overview`} />;
+};
 function App() {
+  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+        <div className="App">
+          <header className="App-header">
+            <Bar />
+            <Divbox
+              style={{
+                marginTop: '120px',
+                // marginLeft: '22%',
+                // marginRight: '22%',
+              }}
+            >
+              <Switch>
+                <Mainroute exact path={`/`} />
+                <Route exact path='/overview' component={Overview} />
+                <Route exact path='/vizualize' />
+                <Route exact path='/model' component={Viz} />
+              </Switch>
+            </Divbox>
+            {/* <Footer /> */}
+          </header>
+        </div>
+      </BrowserRouter>
   );
 }
 
