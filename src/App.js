@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Viz from './Viz.js'
 import Overview from "./Overview.js"
 import styled from 'styled-components'
+import Model from './Model.js'
 const Divbox = styled.div`
 // margin-top:120px;
 // margin-left:22%;
@@ -47,8 +48,8 @@ function App() {
               <Switch>
                 <Mainroute exact path={`/`} />
                 <Route exact path='/overview' component={Overview} />
-                <Route exact path='/vizualize' />
-                <Route exact path='/model' component={Viz} />
+                <Route exact path='/vizualize' component={Viz}/>
+                <Route exact path='/model' component={Model} />
               </Switch>
             </Divbox>
             {/* <Footer /> */}
