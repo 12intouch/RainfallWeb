@@ -47,6 +47,7 @@ function App() {
             >
               <Switch>
                 <Mainroute exact path={`/`} />
+                <Mainroute exact path={`/RanifallWeb`} />
                 <Route exact path='/overview' component={Overview} />
                 <Route exact path='/vizualize' component={Viz}/>
                 <Route exact path='/model' component={Model} />
