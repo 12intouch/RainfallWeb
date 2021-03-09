@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/RanifallWeb/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/RanifallWeb/static/js/main.e17fe4e4.chunk.js",
+    "main.js.map": "/RanifallWeb/static/js/main.e17fe4e4.chunk.js.map",
+    "runtime-main.js": "/RanifallWeb/static/js/runtime-main.a817d982.js",
+    "runtime-main.js.map": "/RanifallWeb/static/js/runtime-main.a817d982.js.map",
+    "static/css/2.4ee63354.chunk.css": "/RanifallWeb/static/css/2.4ee63354.chunk.css",
+    "static/js/2.6cbb50ae.chunk.js": "/RanifallWeb/static/js/2.6cbb50ae.chunk.js",
+    "static/js/2.6cbb50ae.chunk.js.map": "/RanifallWeb/static/js/2.6cbb50ae.chunk.js.map",
+    "static/js/3.1f2ba090.chunk.js": "/RanifallWeb/static/js/3.1f2ba090.chunk.js",
+    "static/js/3.1f2ba090.chunk.js.map": "/RanifallWeb/static/js/3.1f2ba090.chunk.js.map",
+    "index.html": "/RanifallWeb/index.html",
+    "static/css/2.4ee63354.chunk.css.map": "/RanifallWeb/static/css/2.4ee63354.chunk.css.map",
+    "static/css/main.6dea0f05.chunk.css.map": "/RanifallWeb/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.6cbb50ae.chunk.js.LICENSE.txt": "/RanifallWeb/static/js/2.6cbb50ae.chunk.js.LICENSE.txt",
+    "static/media/broken-wire.822113d6.svg": "/RanifallWeb/static/media/broken-wire.822113d6.svg",
+    "static/media/clean-code.2261fd85.svg": "/RanifallWeb/static/media/clean-code.2261fd85.svg",
+    "static/media/error.11bc9515.svg": "/RanifallWeb/static/media/error.11bc9515.svg",
+    "static/media/logo.cd2f75c1.png": "/RanifallWeb/static/media/logo.cd2f75c1.png",
+    "static/media/problem.244b61c7.svg": "/RanifallWeb/static/media/problem.244b61c7.svg",
+    "static/media/visualization.000d9b2c.svg": "/RanifallWeb/static/media/visualization.000d9b2c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a817d982.js",
+    "static/css/2.4ee63354.chunk.css",
+    "static/js/2.6cbb50ae.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.e17fe4e4.chunk.js"
+  ]
+}
