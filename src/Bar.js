@@ -86,13 +86,13 @@ export default class Bar extends Component {
             <Main>
                 <Header>
                 <FlexRow>
-                <StyledLink to='/overview'>Overview</StyledLink>
+                <StyledLink to='/RanifallWeb/overview'>Overview</StyledLink>
                 <LittleSpace />
-                <StyledLink to='/vizualize'>
+                <StyledLink to='/RanifallWeb/vizualize'>
                 Vizualize
                 </StyledLink>
                 <LittleSpace />
-                <StyledLink to='/model'>
+                <StyledLink to='/RanifallWeb/model'>
                 Model
                 </StyledLink>
                 <LittleSpace />

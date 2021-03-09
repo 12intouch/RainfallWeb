@@ -28,7 +28,7 @@ const Divbox = styled.div`
 
 
 const Mainroute = () => {
-  return <Redirect to={`/overview`} />;
+  return <Redirect to={`/RanifallWeb/overview`} />;
 };
 function App() {
   
@@ -48,9 +48,9 @@ function App() {
               <Switch>
                 <Mainroute exact path={`/`} />
                 <Mainroute exact path={`/RanifallWeb`} />
-                <Route exact path='/overview' component={Overview} />
-                <Route exact path='/vizualize' component={Viz}/>
-                <Route exact path='/model' component={Model} />
+                <Route exact path='/RanifallWeb/overview' component={Overview} />
+                <Route exact path='/RanifallWeb/vizualize' component={Viz}/>
+                <Route exact path='/RanifallWeb/model' component={Model} />
               </Switch>
             </Divbox>
             {/* <Footer /> */}
