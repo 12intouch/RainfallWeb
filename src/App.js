@@ -48,9 +48,9 @@ function App() {
               <Switch>
                 <Mainroute exact path={`/`} />
                 <Mainroute exact path={`/RanifallWeb`} />
-                <Route exact path='/RanifallWeb/overview' component={Overview} />
-                <Route exact path='/RanifallWeb/vizualize' component={Viz}/>
-                <Route exact path='/RanifallWeb/model' component={Model} />
+                <Route exact path='/RainfallWeb/overview' component={Overview} />
+                <Route exact path='/RainfallWeb/vizualize' component={Viz}/>
+                <Route exact path='/RainfallWeb/model' component={Model} />
               </Switch>
             </Divbox>
             {/* <Footer /> */}
