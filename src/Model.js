@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import tableau from "tableau-api";
-import { Form, Input, Button, Select, Table, Spin } from 'antd';
+import { Form, Input, Button, Select, Table, Spin, Tabs, message } from 'antd';
 import 'antd/dist/antd.css';
 import axios from "axios";
 import { CSVLink } from "react-csv";
 import { Line } from '@ant-design/charts';
 const backend_url = "http://localhost:5050/api"
+const backend_url1 = "http://localhost:5000/api"
 // const url = 'https://public.tableau.com/views/ModelVisualization/Dashboard1?:language=en&:display_count=y&publish=yes&:toolbar=n&:origin=viz_share_link'
-
+const { TabPane } = Tabs;
 const Result = [{DateTime: "1", Rain1h: 200, Rain1h_Predict: 2, Anomaly_Sig: 2},{DateTime: "2", Rain1h: 300, Rain1h_Predict: 2, Anomaly_Sig: 1},{DateTime: "3", Rain1h: 200, Rain1h_Predict: 2, Anomaly_Sig: 1}]
+const Reanomaly = [{Date: "1", Actual: 0}]
+const Rezero = [{Date: "1", Actual: 0}]
+const Rezerotwo = [{Date: "1", Actual: 0}]
+const Renan = [{Date: "1", Actual: 0}]
 const columns = [
     {
       title: 'DateTime',
@@ -33,34 +38,61 @@ const columns = [
     },
   ];
 
+  const columns1 = [
+    {
+      title: 'DateTime',
+      dataIndex: 'Date',
+      key: 'Date',
+    },
+    {
+      title: 'Actual',
+      dataIndex: 'Actual',
+      key: 'Actual',
+    }
+  ];
+
 const Main = styled.div`
-    padding-left:30%;
-    padding-right:30%;
+    padding-left:20%;
+    padding-right:20%;
     padding-bottom:30%;
     width:100%;
     display:flex;
     flex-direction:column;
     // align-items: center;
     // justify-content: center;
+    @media (max-width: 2000px) {
+      padding-left:15%;
+      padding-right:15%;
+    }
+    @media (max-width: 1315px) {
+      padding-left:10%;
+      padding-right:10%;
+    }
+    @media (max-width: 411px) {
+      padding-left:5%;
+      padding-right:5%;
+    }
    
 `
-const Iframe1 = styled.iframe`
-@media (max-width: 1249px) {
-    display:none
-}
-`
-const Iframe2 = styled.iframe`
-display:none;
-@media (max-width: 1249px) and (min-width: 768px)  {
-    display:block
-}
-`
-const Iframe3 = styled.iframe`
+const Texxt = styled.div`
+  font-family: 'Mitr', sans-serif;
+  font-size:1rem;
 
-@media (min-width: 768px)  {
-    display:none
-}
 `
+const Texxt2 = styled.div`
+  font-family: 'Mitr', sans-serif;
+  font-size:1rem;
+  // margin-top:20px;
+
+`
+const Minicircle = styled.div`
+  // margin-top:20px;
+  height:10px;
+  width:10px;
+  border-radius:50%;
+
+`
+
 
 
 
@@ -81,8 +113,16 @@ export default class Model extends Component {
     
     state = {
         dataresult: Result,
+        dataanomaly: Reanomaly,
+        datazero: Rezero,
+        datazerotwo: Rezerotwo,
+        datanan: Renan,
         loading: false,
+        loading1: false,
         showResult: false,
+        showResult1: false,
+        station:'',
+        year:'',
     }
     config =  {
         xField: 'DateTime',
@@ -140,7 +180,7 @@ export default class Model extends Component {
             lineWidth: 0,
         },
         tooltip: {
-            fields: ['Rain1h'],
+            fields: ['Rain1h_Predict'],
         }
     };
     onFinish = (values) => {
@@ -154,15 +194,94 @@ export default class Model extends Component {
                 dataresult: data ,
                 loading: false,
                 showResult: true,
+                station:values.station,
+                year:values.year
             })
             console.log(data)
-          });
+          })
+          .catch(error =>{
+            console.log(error)
+            this.setState({
+              loading: false,
+            })
+            message.error('ไม่พบข้อมูลสถานีหรือปีอยู่ในฐานข้อมูล (กรุณาตรวจสอบให้แน่ใจว่าได้ทำการ Detect ข้อมูลไปแล้ว)')
+          }
+          )
     };
+    callback(key) {
+      console.log(key);
+    }
+    onFinish1 = (values) => {
+      this.setState({
+          loading1: true,
+      })
+      console.log('Success:', values);
+      axios.post(backend_url1, values)
+        .then(({data}) => {
+          this.setState({
+            loading1: false,
+            dataanomaly: JSON.parse(data.anomaly),
+            datazero: JSON.parse(data.zero),
+            datazerotwo: JSON.parse(data.zerotwo),
+            datanan: JSON.parse(data.nan),
+            showResult1: true,
+          })
+        message.success('การตรวจจับข้อมูลสำเร็จ สามารถดำเนินการ Fill ข้อมูลในขั้นถัดไป')
+        })
+        .catch(error =>{
+        console.log(error)
+        this.setState({
+          loading1: false,
+        })
+        message.error('ไม่พบข้อมูลสถานีหรือปีอยู่ในฐานข้อมูล')
+        }
+        )
+  };
+    
     
     render() {
         return (
             
             <Main>
+            <Tabs onChange={this.callback} type="card">
+            <TabPane tab="Detect" key="1">
+            <Spin spinning={this.state.loading1} delay={500}>
+              <Form
+              layout='vertical'
+              onFinish={this.onFinish1}
+              >
+                <Form.Item label="Station" name = "station">
+                    
+                    <Input />
+                    
+                </Form.Item>
+                <Form.Item label="Year" name="year">
+                  <Input />
+                </Form.Item>
+                <Form.Item >
+                  <Button type="primary" htmlType="submit">
+                    Submit
+                  </Button>
+                </Form.Item>
+              </Form>
+              </Spin>
+              <div style={{ display: this.state.showResult1 ? "block" : "none" }}>
+              ข้อมูลที่ผิดปกติประเภทค่า Extreme จำนวน {this.state.dataanomaly.length} ข้อมูล
+              <Table dataSource={this.state.dataanomaly} columns={columns1} />
+              ข้อมูลที่ผิดปกติประเภทค่า 0 จำนวน {this.state.datazero.length} ข้อมูล
+              <Table dataSource={this.state.datazero} columns={columns1} />
+              ข้อมูลที่ผิดปกติประเภทค่า 0.2 จำนวน {this.state.datazerotwo.length} ข้อมูล
+              <Table dataSource={this.state.datazerotwo} columns={columns1} />
+              ข้อมูลที่สูญหายจำนวน {this.state.datanan.length} ข้อมูล
+              <Table dataSource={this.state.datanan} columns={columns1} />
+              </div>
+            </TabPane>
+
+
+
+
+
+            <TabPane tab="Fill" key="2">
             <Spin spinning={this.state.loading} delay={500}>
             <Form
             layout='vertical'
@@ -205,13 +324,25 @@ export default class Model extends Component {
                     >
                     Download File
                 </CSVLink>
-            
+                <Texxt style={{marginTop:'20px'}}>ข้อมูลสถานี {this.state.station} ปี {this.state.year} ก่อนปรับปรุงข้อมูล </Texxt>
                 <div style={{ height : "400px" }}>
                 <Line {...this.config} data={this.state.dataresult}  />
+                </div>
+                  <div style={{display:'flex',marginTop:'20px'}}><Minicircle style={{background:'blue'}}></Minicircle> &nbsp;<Texxt2 style={{color:'blue'}}>ข้อมูลจริงที่ตรวจจับว่าไม่ผิดปกติ</Texxt2> </div>
+                  <div style={{display:'flex',marginTop:'20px'}}><Minicircle style={{background:'red'}}></Minicircle> &nbsp;<Texxt2 style={{color:'red'}}>ข้อมูลจริงที่ตรวจจับว่าผิดปกติ</Texxt2> </div>
+                <Texxt style={{marginTop:'20px'}}>ข้อมูลสถานี {this.state.station} ปี {this.state.year} หลังปรับปรุงข้อมูล </Texxt>
+                <div style={{ height : "400px" }}>
+                {/* <Line {...this.config} data={this.state.dataresult}  /> */}
                 <Line {...this.config2} data={this.state.dataresult}  />
+                </div>
+                <div>
+                  <div style={{display:'flex',marginTop:'20px'}}><Minicircle style={{background:'orange'}}></Minicircle> &nbsp;<Texxt2 style={{color:'orange'}}>ข้อมูลที่ทำนายแทนที่ข้อมูลสูญหาย</Texxt2> </div>
+                  <div style={{display:'flex',marginTop:'20px'}}><Minicircle style={{background:'green'}}></Minicircle> &nbsp;<Texxt2 style={{color:'green'}}>ข้อมูลที่ทำนายแทนที่ข้อมูลที่ผิดปกติ</Texxt2> </div>
                 </div>
             
             </div>
+            </TabPane>
+            </Tabs>
           </Main>
           
 
