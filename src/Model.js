@@ -294,9 +294,7 @@ export default class Model extends Component {
             onFinish={this.onFinish}
             >
             <Form.Item label="Station" name = "station">
-                <Select>
-                    <Select.Option value="BLKO">BLKO</Select.Option>
-                </Select>
+              <Input />
             </Form.Item>
             <Form.Item label="CHK_HII" name = "check">
                 <Select>
