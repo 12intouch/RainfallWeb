@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/RainfallWeb/static/css/main.2ae47eeb.chunk.css",
-    "main.js": "/RainfallWeb/static/js/main.cff38384.chunk.js",
-    "main.js.map": "/RainfallWeb/static/js/main.cff38384.chunk.js.map",
+    "main.js": "/RainfallWeb/static/js/main.8c0ca711.chunk.js",
+    "main.js.map": "/RainfallWeb/static/js/main.8c0ca711.chunk.js.map",
     "runtime-main.js": "/RainfallWeb/static/js/runtime-main.32558676.js",
     "runtime-main.js.map": "/RainfallWeb/static/js/runtime-main.32558676.js.map",
     "static/css/2.4ee63354.chunk.css": "/RainfallWeb/static/css/2.4ee63354.chunk.css",
@@ -26,6 +26,6 @@
     "static/css/2.4ee63354.chunk.css",
     "static/js/2.7fc7aeae.chunk.js",
     "static/css/main.2ae47eeb.chunk.css",
-    "static/js/main.cff38384.chunk.js"
+    "static/js/main.8c0ca711.chunk.js"
   ]
 }
