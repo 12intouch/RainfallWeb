@@ -124,6 +124,7 @@ export default class Model extends Component {
         loading1: false,
         showResult: false,
         showResult1: false,
+        model:'',
         station:'',
         year:'',
     }
@@ -199,6 +200,7 @@ export default class Model extends Component {
                 showResult: true,
                 station:values.station,
                 year:values.year,
+                model:values.model,
                 rerol:JSON.parse(data.row),
                 renul:JSON.parse(data.nul),
                 reano:JSON.parse(data.ano),
@@ -325,7 +327,7 @@ export default class Model extends Component {
                 <Texxt2 style={{color:'black'}}>มีข้อมูลที่ตรวจจับว่าผิดปกติจำนวนทั้งหมด {this.state.reano} ข้อมูล</Texxt2> 
                 <Table dataSource={this.state.dataresult} columns={columns} />
                 <CSVLink
-                    filename={"Result.csv"}
+                    filename={"dict_AllDay_ActualPredictType_"+this.state.model+'_'+this.state.station+'_'+this.state.year+'.csv'}
                     data={this.state.dataresult}
                     className="btn btn-primary"
                     >
