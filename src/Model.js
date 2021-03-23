@@ -272,13 +272,13 @@ export default class Model extends Component {
               </Form>
               </Spin>
               <div style={{ display: this.state.showResult1 ? "block" : "none" }}>
-              ข้อมูลที่ผิดปกติประเภทค่า Extreme จำนวน {this.state.dataanomaly.length} ข้อมูล
+              มีชุดข้อมูลที่น่าสงสัยว่าผิดปกติประเภทค่า Extreme จำนวน {this.state.dataanomaly.length} ข้อมูล
               <Table dataSource={this.state.dataanomaly} columns={columns1} />
-              ข้อมูลที่ผิดปกติประเภทค่า 0 จำนวน {this.state.datazero.length} ข้อมูล
+              มีชุดข้อมูลที่น่าสงสัยว่าผิดปกติประเภทค่า 0 จำนวน {this.state.datazero.length} ข้อมูล
               <Table dataSource={this.state.datazero} columns={columns1} />
-              ข้อมูลที่ผิดปกติประเภทค่า 0.2 จำนวน {this.state.datazerotwo.length} ข้อมูล
+              มีชุดข้อมูลที่น่าสงสัยว่าผิดปกติประเภทค่า 0.2 จำนวน {this.state.datazerotwo.length} ข้อมูล
               <Table dataSource={this.state.datazerotwo} columns={columns1} />
-              ข้อมูลที่สูญหายจำนวน {this.state.datanan.length} ข้อมูล
+              มีข้อมูลที่สูญหายจำนวน {this.state.datanan.length} ข้อมูล
               <Table dataSource={this.state.datanan} columns={columns1} />
               </div>
             </TabPane>
