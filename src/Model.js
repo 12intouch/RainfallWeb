@@ -112,6 +112,9 @@ export default class Model extends Component {
     // }
     
     state = {
+        rerol:0,
+        renul:0,
+        reano:0,
         dataresult: Result,
         dataanomaly: Reanomaly,
         datazero: Rezero,
@@ -191,11 +194,14 @@ export default class Model extends Component {
         axios.post(backend_url, values)
           .then(({data}) => {
             this.setState({
-                dataresult: data ,
+                dataresult: JSON.parse(data.data) ,
                 loading: false,
                 showResult: true,
                 station:values.station,
-                year:values.year
+                year:values.year,
+                rerol:JSON.parse(data.row),
+                renul:JSON.parse(data.nul),
+                reano:JSON.parse(data.ano),
             })
             console.log(data)
           })
@@ -316,6 +322,9 @@ export default class Model extends Component {
           </Form>
           </Spin>
           <div style={{ display: this.state.showResult ? "block" : "none" }}>
+                <Texxt2 style={{color:'black'}}>ข้อมูลจำนวนทั้งหมด {this.state.rerol} ข้อมูล</Texxt2> 
+                <Texxt2 style={{color:'black'}}>มีข้อมูลสูญหายจำนวนทั้งหมด {this.state.renul} ข้อมูล</Texxt2> 
+                <Texxt2 style={{color:'black'}}>มีข้อมูลที่ตรวจจับว่าผิดปกติจำนวนทั้งหมด {this.state.reano} ข้อมูล</Texxt2> 
                 <Table dataSource={this.state.dataresult} columns={columns} />
                 <CSVLink
                     filename={"Result.csv"}
