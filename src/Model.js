@@ -310,7 +310,7 @@ export default class Model extends Component {
                 <Select>
                     <Select.Option value="svr">svr</Select.Option>
                     <Select.Option value="randomforest">randomforest</Select.Option>
-                    <Select.Option value="linear">lineart</Select.Option>
+                    <Select.Option value="linear">linear</Select.Option>
                 </Select>
             </Form.Item>
               <Button type="primary" htmlType="submit">
